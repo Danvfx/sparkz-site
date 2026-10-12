@@ -1,0 +1,104 @@
+/* Cream and beige theme. Loaded after base.css: it re-colors the page and keeps the layout. */
+:root {
+  --cream: #fff4df;
+  --cream-2: #fdeacb;
+  --beige: #f3dfbc;
+  --card: #fffbf2;
+  --line: rgba(26, 18, 64, .16);
+  --orange-ink: #a64b00;   /* tagline and warm accents, 5:1 on cream */
+}
+::selection { background: var(--sun); color: var(--night); }
+body { background: var(--cream); color: var(--ink); }
+#sky {
+  background:
+    radial-gradient(55% 50% at var(--sky-x, 72%) 55%, color-mix(in srgb, var(--cup-base) 20%, transparent), transparent 70%),
+    radial-gradient(40% 36% at 22% 18%, color-mix(in srgb, var(--cup-top) 26%, transparent), transparent 70%),
+    linear-gradient(180deg, #fff6e4 0%, #fdeacb 100%);
+}
+.dark { color: var(--ink); }
+.dark-2 { background: linear-gradient(180deg, #fdeacb 0%, #f9e1bb 100%); color: var(--ink); }
+.dark-3 { background: linear-gradient(180deg, #f9e1bb 0%, #f6dcb4 55%, #f3d3a3 100%); color: var(--ink); }
+.paper { background: #fffbf3; }
+
+/* nav: solid cream, no backdrop blur (blur over a live canvas is expensive) */
+.nav { background: rgba(255, 244, 223, .94); border-bottom: 1px solid var(--line); backdrop-filter: none; }
+.nav-links a { color: var(--ink); }
+.nav-links a:hover { background: rgba(26, 18, 64, .08); }
+.menu { background: rgba(255, 244, 223, .98); color: var(--ink); }
+.menu a:hover, .menu a:focus-visible { color: var(--orange-ink); }
+.rail a { background: rgba(26, 18, 64, .22); border-color: var(--cream); }
+.rail a.is-active { background: var(--night); }
+.rail a span { background: var(--night); color: var(--ice); }
+.cursor { border-color: var(--night); }
+.cursor.grow { background: rgba(26, 18, 64, .08); }
+#preloader { background: var(--cream); }
+.pre-text { color: var(--muted-ink); }
+.pre-cup path { stroke: var(--night); fill: rgba(26, 18, 64, .06); }
+
+/* buttons */
+.btn { will-change: auto; }
+.btn-ghost { border-color: var(--night); color: var(--night); }
+.btn-ghost:hover { background: rgba(26, 18, 64, .07); }
+
+/* hero */
+.hero-title { text-shadow: 0 .05em 0 rgba(26, 18, 64, .18); }
+.tagline { color: var(--orange-ink); }
+.skip-order, .skip-order:visited { color: var(--muted-ink); }
+.sdg-badge { background: var(--leaf); color: #fff; }
+.lede { color: color-mix(in srgb, var(--ink) 88%, transparent); }
+.pour-pin { background: transparent; }
+.beat { -webkit-text-stroke: .1em var(--leaf); text-shadow: 0 .05em 0 rgba(26, 18, 64, .2); }
+.skip-pour { background: rgba(255, 251, 242, .92); border: 1px solid var(--line); color: var(--ink); }
+.caption { color: var(--muted-ink); opacity: 1; }
+.srcnote, .pour-caption { color: var(--muted-ink); }
+
+/* soft drops floating behind the hero, in the logo's colors (transform only, cheap) */
+.hero::before, .hero::after { content: ''; position: absolute; width: 34px; height: 34px; border-radius: 60% 60% 60% 10%; opacity: .55; pointer-events: none; animation: bob 7s ease-in-out infinite; }
+.hero { position: relative; }
+.hero::before { left: 47%; bottom: 10%; background: var(--drop-pink); transform: rotate(-45deg); }
+.hero::after { right: 8%; top: 18%; width: 24px; height: 24px; background: var(--drop-blue); transform: rotate(-45deg); animation-delay: -3s; }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+
+/* about */
+.team li { background: var(--card); border: 1px solid var(--line); box-shadow: 0 3px 0 rgba(26, 18, 64, .08); }
+.team span:last-child { color: var(--muted-ink); }
+.hill svg { background: #231a5a; }
+
+/* product */
+.inbox-list li { background: var(--card); border: 1px solid var(--line); box-shadow: 0 3px 0 rgba(26, 18, 64, .08); }
+.inbox-list li span { color: var(--muted-ink); }
+.price-chip { box-shadow: 0 3px 0 #c99a14; }
+.goo-opt span { background: var(--card); border: 2px solid rgba(26, 18, 64, .25); color: var(--ink); }
+.goo-opt input:checked + span { border-color: transparent; background: transparent; }
+.combo-detail, .tried { color: var(--muted-ink); }
+.copy-fallback input { background: #fff; color: var(--ink); }
+.seg { border-color: var(--night); }
+.seg-btn { color: var(--ink); }
+.seg-btn.is-on { background: var(--night); color: var(--ice); }
+.swatch { background: var(--card); border: 1px solid var(--line); box-shadow: 0 3px 0 rgba(26, 18, 64, .08); }
+.swatch small, .swatch .role { color: var(--muted-ink); }
+.marquee-track { color: var(--ink); opacity: .35; }
+.ch-panel { background: var(--card); border: 1px solid var(--line); box-shadow: 0 3px 0 rgba(26, 18, 64, .08); }
+.ch-live { color: var(--orange-ink); }
+.dark-3 .cite, .dark-2 .cite { color: var(--leaf); text-decoration: underline; }
+.sigs .sig-pin { background: linear-gradient(160deg, color-mix(in srgb, var(--s1) 45%, var(--cream)), color-mix(in srgb, var(--s2) 45%, var(--cream))); }
+.sig-name { -webkit-text-stroke: .08em var(--night); color: #fff; }
+.sig-line { text-shadow: none; }
+.sig-meta { color: var(--ink); text-shadow: none; opacity: .9; }
+.straw-fig svg { filter: drop-shadow(0 6px 6px rgba(26, 18, 64, .2)); }
+
+/* cards on paper and sunrise sections get a consistent soft lift */
+.fact, .pitch-points li { box-shadow: 5px 5px 0 var(--sun); }
+.targets li { color: var(--ink); }
+
+/* footer stays dark so the page has a firm ending */
+.foot { color: var(--ice); }
+.foot a { color: var(--ice); }
+.foot-small { color: #c9c4ea; }
+
+@media (prefers-reduced-motion: reduce) { .hero::before, .hero::after { animation: none; } }
+
+.hero .lede { max-width: 31rem; }
+.builder-slot { height: clamp(260px, 36vh, 440px); }
+@media (min-width: 900px) { .builder-slot { height: min(56vh, 480px); } }
+.sig-slot { height: min(58vh, 460px); }

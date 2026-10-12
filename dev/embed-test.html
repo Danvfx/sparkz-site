@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sparkz embed test</title>
+  <!-- Local testing only. Run `npm run dev`, then open /dev/embed-test.html. -->
+  <style>
+    body { font: 15px system-ui, sans-serif; margin: 24px; background: #eee; }
+    h2 { margin: 28px 0 6px; font-size: 16px; }
+    iframe { border: 2px solid #1a1240; background: #fff; display: block; }
+    input { width: min(640px, 100%); padding: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Sparkz inside an iframe</h1>
+  <p>Each frame loads the site the way Google Sites would. The site should use native scrolling, show "Open full site", and never trap the mouse wheel.</p>
+
+  <h2>1280 x 800 (strict sandbox: allow-scripts allow-popups)</h2>
+  <iframe src="/" width="1280" height="800" sandbox="allow-scripts allow-popups" title="Sparkz 1280"></iframe>
+
+  <h2>768 x 1024 (looser sandbox)</h2>
+  <iframe src="/" width="768" height="1024" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" title="Sparkz 768"></iframe>
+
+  <h2>375 x 740 (looser sandbox)</h2>
+  <iframe src="/" width="375" height="740" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" title="Sparkz 375"></iframe>
+
+  <h2>Short frames (600 and 1000 px tall)</h2>
+  <iframe src="/" width="1100" height="600" title="Sparkz 600"></iframe>
+  <br>
+  <iframe src="/" width="1100" height="1000" title="Sparkz 1000"></iframe>
+
+  <h2>The deployed site</h2>
+  <p><label>Deployed URL <input id="u" placeholder="https://<user>.github.io/<repo>/"></label> <button id="go">Load</button></p>
+  <iframe id="live" width="1100" height="800" title="Sparkz deployed"></iframe>
+  <script>
+    // TODO: paste the GitHub Pages URL (SITE_URL) here after the first deploy.
+    document.getElementById('go').onclick = () => { document.getElementById('live').src = document.getElementById('u').value; };
+  </script>
+</body>
+</html>

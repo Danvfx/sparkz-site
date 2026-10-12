@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Sparkz | Refresh your break</title>
+<meta name="description" content="Sparkz: build-your-own mocktails at LSCA. Accessible Drinks, Innovative Twists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 3.0 Sticky nav -->
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <button class="brand" type="button" data-go="hero" aria-label="Sparkz, back to the top">
+      <img class="logo" src="assets/Sparkz logo.png" alt="Sparkz" data-ratio="1/1" width="32" height="32">
+    </button>
+    <button class="nav-toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navList">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+    <nav class="nav-list" id="navList" aria-label="Sections">
+      <button type="button" data-go="build">Build</button>
+      <button type="button" data-go="menu">Menu</button>
+      <button type="button" data-go="how">How it works</button>
+      <button type="button" data-go="footprint">Footprint</button>
+      <button type="button" class="nav-cta" data-go="preorder">Pre-order</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- 3.1 Hero -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Refresh your break.</h1>
+      <div class="hero-line" aria-hidden="true"></div>
+      <p class="lede">Build-your-own mocktails at LSCA, ordered before your break and finished on your own terms.</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-gold" data-go="build">Build your drink</button>
+        <button type="button" class="btn btn-outline" data-go="preorder">Pre-order now</button>
+      </div>
+    </div>
+    <div class="hero-art glow glow-gold">
+      <img class="photo" src="assets/Levitation Shot.png" alt="A Sparkz drink in a clear cup, lit against a dark background with ice and water drops" data-ratio="4/5" width="1122" height="1402" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- 3.2 The problem -->
+<section class="section" id="problem">
+  <div class="wrap problem-grid">
+    <div>
+      <h2>Your break is shorter than it looks.</h2>
+      <p class="measure">LSCA sits on a slope. By the time you walk to the canteen and wait in line, most of your break is gone. The drink ends up rushed, left half finished, or skipped. Not because you did not want it. Because the break did not allow it.</p>
+    </div>
+    <figure class="quote">
+      <blockquote>&ldquo;I want the drink. I just do not want to spend my break standing for it.&rdquo;</blockquote>
+      <figcaption>LSCA student, <span class="confirm">[CONFIRM: survey n]</span> respondent survey</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 3.3 Build your drink -->
+<section class="section builder" id="build">
+  <div class="wrap">
+    <h2>Build your drink.</h2>
+    <p class="measure sub">Pick a base, pick a top, and watch the pour.</p>
+
+    <div class="builder-grid">
+
+      <div class="stage" id="stage">
+        <div class="stage-glow" aria-hidden="true"></div>
+        <svg class="cup" id="cup" viewBox="0 -44 240 460" role="img" aria-labelledby="cupTitle cupDesc" focusable="false">
+          <title id="cupTitle">Your Sparkz cup</title>
+          <desc id="cupDesc">An empty clear cup with a dome lid and a straw.</desc>
+          <defs>
+            <clipPath id="cupClip">
+              <path d="M32 114 L208 114 L184 388 Q183 396 175 396 L65 396 Q57 396 56 388 Z"/>
+            </clipPath>
+            <clipPath id="liqClip"><rect id="liqClipRect" x="0" y="396" width="240" height="300"/></clipPath>
+            <linearGradient id="liqGrad" gradientUnits="userSpaceOnUse" x1="0" y1="200" x2="0" y2="396">
+              <stop id="gs0" offset="0" stop-color="#C46A18"/>
+              <stop id="gs1" offset="1" stop-color="#C46A18"/>
+              <stop id="gs2" offset="1" stop-color="#C46A18"/>
+            </linearGradient>
+            <linearGradient id="glassSheen" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity=".22"/>
+              <stop offset=".35" stop-color="#fff" stop-opacity=".04"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- cup body -->
+          <path d="M32 114 L208 114 L184 388 Q183 396 175 396 L65 396 Q57 396 56 388 Z" fill="rgba(255,255,255,.035)"/>
+
+          <!-- liquid -->
+          <g clip-path="url(#cupClip)">
+            <rect id="liquid" x="0" y="396" width="240" height="300" fill="url(#liqGrad)"/>
+            <ellipse id="surface" cx="120" cy="396" rx="80" ry="6" fill="#fff" fill-opacity="0"/>
+            <g clip-path="url(#liqClip)" id="bubbles" opacity="0">
+              <circle class="bub" cx="84" cy="390" r="3" style="--d:3.2s;--w:0s"/>
+              <circle class="bub" cx="110" cy="392" r="2" style="--d:2.6s;--w:.7s"/>
+              <circle class="bub" cx="136" cy="390" r="3.5" style="--d:3.8s;--w:1.2s"/>
+              <circle class="bub" cx="158" cy="392" r="2" style="--d:2.9s;--w:.3s"/>
+              <circle class="bub" cx="98" cy="388" r="2.5" style="--d:3.4s;--w:1.9s"/>
+              <circle class="bub" cx="146" cy="388" r="2" style="--d:3s;--w:2.4s"/>
+              <circle class="bub" cx="122" cy="392" r="3" style="--d:3.6s;--w:1.5s"/>
+            </g>
+          </g>
+
+          <!-- bagasse straw -->
+          <line x1="108" y1="388" x2="171" y2="-22" stroke="#B89A66" stroke-width="10" stroke-linecap="round"/>
+          <line x1="108" y1="388" x2="171" y2="-22" stroke="#E2CFA2" stroke-width="6" stroke-linecap="round"/>
+
+          <!-- pour: vial and stream -->
+          <g id="vial" opacity="0">
+            <g transform="translate(46 -34) rotate(38)">
+              <rect x="0" y="0" width="38" height="26" rx="7" id="vialBody" fill="#FFC02E"/>
+              <rect x="30" y="4" width="10" height="18" rx="3" fill="#fff" fill-opacity=".35"/>
+            </g>
+          </g>
+          <rect id="stream" x="82" y="-8" width="5" height="0" rx="2.5" fill="#FFC02E" opacity="0"/>
+
+          <!-- glass, lid, rim -->
+          <path d="M32 114 L208 114 L184 388 Q183 396 175 396 L65 396 Q57 396 56 388 Z" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M40 124 L62 380" stroke="url(#glassSheen)" stroke-width="12" stroke-linecap="round" opacity=".9" fill="none"/>
+          <path d="M30 114 C30 72 72 62 120 62 C168 62 210 72 210 114 Z" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.42)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M60 100 C72 82 92 74 112 72" stroke="#fff" stroke-opacity=".28" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <rect x="24" y="108" width="192" height="10" rx="5" fill="rgba(255,255,255,.16)" stroke="rgba(255,255,255,.42)" stroke-width="1.5"/>
+        </svg>
+        <p class="stage-hint" id="stageHint">Pick a base to fill the cup.</p>
+      </div>
+
+      <div class="controls">
+        <div class="step">
+          <h3 id="baseLabel"><span class="stepno">1</span>Pick a base</h3>
+          <div class="chips" id="baseChips" role="group" aria-labelledby="baseLabel"></div>
+        </div>
+        <div class="step">
+          <h3 id="topLabel"><span class="stepno">2</span>Pick a top</h3>
+          <div class="chips" id="topChips" role="group" aria-labelledby="topLabel"></div>
+        </div>
+        <p class="legend"><span class="dot" aria-hidden="true"></span>Gold dot: Philippine or Southeast Asian flavour. 7 of 10.</p>
+        <button type="button" class="btn btn-outline" id="surprise">Surprise me</button>
+      </div>
+
+      <div class="result" id="result">
+        <p class="result-count" id="resultCount" aria-hidden="true"></p>
+        <div class="result-live" aria-live="polite" aria-atomic="true">
+          <h3 class="result-name" id="resultName">Pick a base to start.</h3>
+          <p class="result-note" id="resultNote"></p>
+        </div>
+        <p class="result-specs" id="resultSpecs"></p>
+        <a class="btn btn-gold preorder-link" id="builderOrder" target="_blank" rel="noopener" aria-disabled="true">Pre-order this drink</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 3.4 The menu -->
+<section class="section" id="menu">
+  <div class="wrap">
+    <h2>Three house drinks. One open format.</h2>
+    <div class="tiles">
+      <button type="button" class="tile" data-base="kiwi" data-top="strawberry">
+        <span class="tile-art glow" style="--g1:#7CB518;--g2:#E63946"><img src="assets/Baguio.png" alt="Baguio: a kiwi and strawberry drink in front of a pine forest" data-ratio="4/5" loading="lazy" width="1122" height="1402"></span>
+        <span class="tile-name">Baguio</span>
+        <span class="tile-combo">Kiwi + Strawberry</span>
+        <span class="tile-text">Named after the city of strawberries.</span>
+      </button>
+      <button type="button" class="tile" data-base="blueberry" data-top="melon">
+        <span class="tile-art glow" style="--g1:#4C5FD5;--g2:#58C27D"><img src="assets/Dawn.png" alt="Dawn: a blueberry and melon drink against a purple sky" data-ratio="4/5" loading="lazy" width="1122" height="1402"></span>
+        <span class="tile-name">Dawn</span>
+        <span class="tile-combo">Blueberry + Melon</span>
+        <span class="tile-text">Cool colours, like the sky before sunrise.</span>
+      </button>
+      <button type="button" class="tile" data-base="sala" data-top="mango">
+        <span class="tile-art glow" style="--g1:#C46A18;--g2:#FFC02E"><img src="assets/Sunrise.png" alt="Sunrise: a sala and mango drink in warm orange light" data-ratio="4/5" loading="lazy" width="1122" height="1402"></span>
+        <span class="tile-name">Sunrise</span>
+        <span class="tile-combo">Sala + Mango</span>
+        <span class="tile-text">Warm and golden, built on sala.</span>
+      </button>
+      <button type="button" class="tile" data-go="build">
+        <span class="tile-art glow" style="--g1:#FFB627;--g2:#FFB627"><img src="assets/Your Way.png" alt="Your Way: three Sparkz drinks and a sign reading Mix it your way" data-ratio="4/5" loading="lazy" width="1122" height="1402"></span>
+        <span class="tile-name">Your Way</span>
+        <span class="tile-combo">Any base + any top</span>
+        <span class="tile-text">Any base, any top. 24 ways to make it yours.</span>
+      </button>
+    </div>
+    <p class="caption">Named after Philippine places and Philippine light.</p>
+    <p class="caption"><span class="confirm">[CONFIRM: 4th signature drink]</span></p>
+  </div>
+</section>
+
+<!-- 3.5 How it works -->
+<section class="section" id="how">
+  <div class="wrap">
+    <h2>How it works.</h2>
+    <ol class="steps">
+      <li><span class="stepno">1</span><div><h3>Order</h3><p>Order before your break, or walk up to the stall.</p></div></li>
+      <li><span class="stepno">2</span><div><h3>Get it</h3><p>Pick it up at Br. Donato Hall, from a roaming seller, or delivered to where you are.</p></div></li>
+      <li><span class="stepno">3</span><div><h3>Pour</h3><p>Pour the 50ml flavour into the chilled base and watch the colour spread.</p></div></li>
+    </ol>
+
+    <div class="video" id="video">
+      <div class="video-frame" id="videoFrame">
+        <img src="assets/Sunrise Pour Shot.png" alt="A hand pouring golden flavour into a Sparkz cup" data-ratio="4/5" loading="lazy" width="1122" height="1402">
+      </div>
+      <p class="caption" id="videoCaption">Pour video coming soon. <span class="confirm">[CONFIRM: YouTube video ID]</span></p>
+    </div>
+
+    <h3 class="subhead">Four ways to get it</h3>
+    <div class="ways">
+      <div class="way"><h4>Pre-order</h4><p>Opens the day before, closes 1 hour before break.</p></div>
+      <div class="way"><h4>Stall</h4><p>Walk up at Br. Donato Hall.</p></div>
+      <div class="way"><h4>Roaming sellers</h4><p>We come to the far buildings.</p></div>
+      <div class="way"><h4>Delivery</h4><p>To a location you pin on the form.</p></div>
+    </div>
+    <p class="closing">You get the drink without the walk.</p>
+  </div>
+</section>
+
+<!-- 3.6 What is in the cup -->
+<section class="section" id="cupinfo">
+  <div class="wrap">
+    <h2>What is in the cup.</h2>
+    <div class="anatomy">
+      <figure class="anatomy-fig glow glow-gold">
+        <img class="photo" src="assets/Baguio Pedestal Shot.png" alt="A Sparkz cup with a dome lid and a sugarcane straw on a dark pedestal" data-ratio="4/5" loading="lazy" width="1122" height="1402">
+        <!-- Callouts. Each one has a line, a dot, and a label.
+             To re-aim a callout, change its dot position and the last point of its line.
+             Numbers are percentages of the whole figure (the picture sits in the middle 42%). -->
+        <svg class="callout-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="none" stroke="#FFB627" stroke-width="1.2">
+            <polyline points="0,24 30,24 41.6,34" vector-effect="non-scaling-stroke"/>
+            <polyline points="0,70 30,70 41.4,58" vector-effect="non-scaling-stroke"/>
+            <polyline points="100,14 70,14 57.6,22" vector-effect="non-scaling-stroke"/>
+            <polyline points="100,56 70,56 56.3,48" vector-effect="non-scaling-stroke"/>
+          </g>
+        </svg>
+        <span class="callout-dot" style="left:41.6%;top:34%"></span>
+        <span class="callout-dot" style="left:41.4%;top:58%"></span>
+        <span class="callout-dot" style="left:57.6%;top:22%"></span>
+        <span class="callout-dot" style="left:56.3%;top:48%"></span>
+        <div class="callout c-left" style="top:24%"><h4>Dome lid, sealed at the stall</h4><p>Safe to carry back to class.</p></div>
+        <div class="callout c-left" style="top:70%"><h4><span class="js-cup-ml"></span>ml clear PET cup <span class="confirm">[CONFIRM: cup size]</span></h4><p>Clear so you can see the colour change.</p></div>
+        <div class="callout c-right" style="top:14%"><h4>Sugarcane bagasse straw</h4><p>Plant based, not plastic.</p></div>
+        <div class="callout c-right" style="top:56%"><h4>50ml flavour container</h4><p>Your top flavour, poured in by you.</p></div>
+      </figure>
+      <ul class="callout-list">
+        <li><h4><span class="js-cup-ml"></span>ml clear PET cup <span class="confirm">[CONFIRM: cup size]</span></h4><p>Clear so you can see the colour change.</p></li>
+        <li><h4>Dome lid, sealed at the stall</h4><p>Safe to carry back to class.</p></li>
+        <li><h4>Sugarcane bagasse straw</h4><p>Plant based, not plastic.</p></li>
+        <li><h4>50ml flavour container</h4><p>Your top flavour, poured in by you.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3.7 Footprint and advocacy -->
+<section class="section" id="footprint">
+  <div class="wrap">
+    <h2>Small changes we actually make.</h2>
+
+    <div class="strip" id="strip">
+      <div class="strip-line" aria-hidden="true"></div>
+      <div class="strip-step" style="--i:0">
+        <span class="strip-node" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 28 L21 4"/><path d="M13 28 L24 4" opacity=".45"/></svg>
+        </span>
+        <p><strong>Bagasse straw</strong> instead of a plastic straw.</p>
+      </div>
+      <div class="strip-step" style="--i:1">
+        <span class="strip-node" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10l-1 6h-8z"/><path d="M12 11v15a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V11"/><path d="M12 19h8"/></svg>
+        </span>
+        <p><strong>50ml portion</strong>, so nothing is over-poured.</p>
+      </div>
+      <div class="strip-step" style="--i:2">
+        <span class="strip-node" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="22" height="20" rx="3"/><path d="M5 13h22M11 4v5M21 4v5"/><path d="M11 20l4 4 7-8"/></svg>
+        </span>
+        <p><strong>Pre-order</strong>, so we make what is ordered, not extra that gets thrown away.</p>
+      </div>
+    </div>
+
+    <div class="takeback">
+      <span class="takeback-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-4 7h8"/><path d="M12 6l4-2 4 7"/><path d="M26 21l-4-6-4 6"/><path d="M9 21l3 5h8"/></svg>
+      </span>
+      <p><strong>Cup take-back.</strong> Bring your empty cup back to the stall and we will send it to recycling.</p>
+    </div>
+
+    <div class="eco">
+      <figure class="eco-fig glow glow-gold">
+        <img class="photo" src="assets/Eco Angle.png" alt="A clear Sparkz cup next to a sugarcane bagasse straw on a wooden table" data-ratio="4/5" loading="lazy" width="1122" height="1402">
+      </figure>
+      <div class="sdgs">
+        <article class="sdg">
+          <span class="sdg-badge" style="--b:#BF8B2E;--ink:#0B0B0F">SDG 12</span>
+          <h3>Responsible Consumption and Production</h3>
+          <p>Bagasse straws, exact portions, produce to order, cup take-back.</p>
+        </article>
+        <article class="sdg">
+          <span class="sdg-badge" style="--b:#A21942;--ink:#FFFFFF">SDG 8</span>
+          <h3>Decent Work and Economic Growth</h3>
+          <p>A student run business with real roles in production, stall service, roaming sales, delivery, and marketing.</p>
+        </article>
+        <article class="sdg">
+          <span class="sdg-badge" style="--b:#FD6925;--ink:#0B0B0F">SDG 9</span>
+          <h3>Industry, Innovation and Infrastructure</h3>
+          <p>A pre-order and delivery system on a campus that did not have one.</p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="advocacy">
+      <h3>Refresh Your Break.</h3>
+      <p>Hot school days and long canteen lines can make breaks stressful. Our refreshing fruit soda gives students a flavorful way to cool down, recharge, and enjoy their break.</p>
+      <p>Skip the wait. Grab a refreshing sip. Make every break count!</p>
+    </aside>
+  </div>
+</section>
+
+<!-- 3.8 Pre-order -->
+<section class="section preorder" id="preorder">
+  <div class="wrap preorder-wrap">
+    <h2>Order before your break.</h2>
+    <p class="measure">Pre-order closes 1 hour before break. Pay at pickup. <span class="confirm">[CONFIRM: payment method]</span></p>
+
+    <div class="mini" id="mini">
+      <div class="mini-swatch" id="miniSwatch" aria-hidden="true"></div>
+      <div class="mini-text">
+        <p class="mini-name" id="miniName">No drink picked yet</p>
+        <p class="mini-sub" id="miniSub"></p>
+      </div>
+      <button type="button" class="btn btn-outline" id="miniBuild" data-go="build">Build your drink</button>
+    </div>
+
+    <a class="btn btn-gold btn-big preorder-link" id="sectionOrder" target="_blank" rel="noopener" aria-disabled="true">Open the pre-order form</a>
+    <p class="caption" id="formConfirm" hidden><span class="confirm">[CONFIRM: pre-order form link]</span></p>
+    <p class="caption">Prefer to walk up? Find us at Br. Donato Hall.</p>
+  </div>
+</section>
+
+<!-- 3.9 Share the advocacy -->
+<section class="section" id="share">
+  <div class="wrap">
+    <h2>Help us spread it.</h2>
+    <div class="pills" id="pills">
+      <button type="button" class="pill" data-tag="#RefreshYourBreak"><span class="pill-text">#RefreshYourBreak</span><span class="pill-state" aria-hidden="true">Copied</span></button>
+      <button type="button" class="pill" data-tag="#BeatTheHeat"><span class="pill-text">#BeatTheHeat</span><span class="pill-state" aria-hidden="true">Copied</span></button>
+      <button type="button" class="pill" data-tag="#SparkzWay"><span class="pill-text">#SparkzWay</span><span class="pill-state" aria-hidden="true">Copied</span></button>
+    </div>
+    <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
+    <div class="share-row">
+      <a class="btn btn-gold" href="https://instagram.com/sparkz.fresh" target="_blank" rel="noopener">Follow @sparkz.fresh</a>
+    </div>
+    <h3 class="subhead">Share your pour</h3>
+    <p class="measure">Film the colour spreading, tag @sparkz.fresh, and use #SparkzWay.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- 3.10 Footer -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img class="logo" src="assets/Sparkz logo.png" alt="Sparkz" data-ratio="1/1" loading="lazy" width="48" height="48">
+      <p class="footer-tag">Accessible Drinks, Innovative Twists.</p>
+    </div>
+    <div>
+      <p>A 12E ABM project, La Salle College Antipolo</p>
+      <p class="muted">Adeva, Manalo, Santos, Torio, Yu</p>
+      <p class="muted">Empowerment Technologies, Mr. Roberto Seraspi</p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

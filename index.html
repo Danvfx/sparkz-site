@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sparkz | Build Your Own Drink</title>
+  <meta name="description" content="Sparkz is a student-run build-your-own mocktail at La Salle College Antipolo. Pick a base, pick a top, pour it in. Every cup comes back.">
+  <meta name="theme-color" content="#FFF4DF">
+  <meta property="og:title" content="Sparkz | Build Your Own Drink">
+  <meta property="og:description" content="Accessible Drinks, Innovative Twists. Build your own mocktail at LSCA.">
+  <meta property="og:type" content="website">
+  <!-- TODO: after the first deploy, make og:image an absolute URL (SITE_URL + /og-image.png) so Messenger and Instagram show a preview -->
+  <meta property="og:image" content="./og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Logo mark. TODO: replace with the real logo (SVG preferred). The raster logo is in img/logo.webp. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="mk-sun" cx="50%" cy="50%" r="55%"><stop offset="0" stop-color="#FFE90A"/><stop offset=".55" stop-color="#FFB11A"/><stop offset="1" stop-color="#FF6A0A"/></radialGradient>
+      <symbol id="sparkz-mark" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="44" fill="url(#mk-sun)" stroke="#FFC107" stroke-width="5"/>
+        <path class="mk-drop" d="M70 6c7 9 9 14 2 20-7 2-12-8-2-20z" fill="#8A35CF"/>
+        <path class="mk-drop" d="M133 52c-12-1-18 2-18 8 4 6 14 4 18-8z" fill="#FF2020"/>
+        <path class="mk-drop" d="M99 130c-8-8-9-14-3-18 7 0 10 10 3 18z" fill="#8FC20A"/>
+        <path class="mk-drop" d="M41 130c8-8 9-14 3-18-7 0-10 10-3 18z" fill="#FF2A8C"/>
+        <path class="mk-drop" d="M7 52c12-1 18 2 18 8-4 6-14 4-18-8z" fill="#0A86D2"/>
+        <text x="70" y="82" text-anchor="middle" font-family="'Fredoka Variable', Fredoka, sans-serif" font-weight="700" font-size="34" fill="#3DAA20" stroke="#fff" stroke-width="6" paint-order="stroke" stroke-linejoin="round" transform="rotate(-7 70 70)">Sparkz</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="sky" aria-hidden="true"></div>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <div id="preloader" role="status" aria-live="polite">
+    <svg class="pre-mark" viewBox="0 0 140 140" aria-hidden="true"><use href="#sparkz-mark"/></svg>
+    <svg class="pre-cup" viewBox="0 0 60 80" aria-hidden="true">
+      <defs><clipPath id="pre-clip"><path d="M10 6h40l-6 68H16z"/></clipPath></defs>
+      <path d="M10 6h40l-6 68H16z" fill="rgba(255,255,255,.08)" stroke="#EAF7FF" stroke-width="2" stroke-linejoin="round"/>
+      <rect id="pre-fill" x="0" y="74" width="60" height="70" fill="#FFC83D" clip-path="url(#pre-clip)"/>
+    </svg>
+    <p class="pre-text">Chilling your drink</p>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#home" aria-label="Sparkz, home"><svg viewBox="0 0 140 140" aria-hidden="true"><use href="#sparkz-mark"/></svg></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#home">Home</a><a href="#about">About Us</a><a href="#product">Our Product</a><a href="#sdg">SDG 12</a><a href="#message">Our Message</a><a href="#pitch">Our Pitch</a><a href="#order">Order</a><a href="#feedback">Feedback</a><a href="#sources">Sources</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Full menu">
+      <a href="#home" style="--d:#FFC233">Home</a><a href="#about" style="--d:#F0465C">About Us</a><a href="#product" style="--d:#7CC242">Our Product</a><a href="#sdg" style="--d:#4B4BC8">SDG 12</a><a href="#message" style="--d:#F5832A">Our Message</a><a href="#pitch" style="--d:#7A3EA1">Our Pitch</a><a href="#order" style="--d:#C81D3E">Order</a><a href="#feedback" style="--d:#93DC7E">Feedback</a><a href="#sources" style="--d:#F6A7B8">Sources</a>
+    </nav>
+  </div>
+  <nav class="rail" id="rail" aria-label="Chapters"></nav>
+  <a class="open-full" id="open-full" href="#" target="_blank" rel="noopener noreferrer" hidden>Open full site</a>
+
+  <main id="main">
+    <!-- ============ HOME ============ -->
+    <section id="home" class="hero dark" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title" class="hero-title"><span class="ht-line">Build your</span> <span class="ht-line">own drink.</span></h1>
+          <p class="tagline">Accessible Drinks, Innovative Twists.</p>
+          <p class="lede">Sparkz is a student-run mocktail stall at LSCA. We bring the drink to you, so your break isn't spent walking and lining up. And every cup comes back.</p>
+          <p class="sdg-line"><a class="sdg-badge" href="#sdg">SDG 12</a><span>Every cup comes back. <span class="hashtag" data-hashtag>#BringBackYourCup</span></span></p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#builder" data-magnet>Build your drink</a>
+            <a class="btn btn-ghost" href="#order" data-magnet>Pre-order</a>
+          </div>
+          <a class="skip-order" href="#order">Skip to pre-order</a>
+        </div>
+        <div class="cup-slot hero-slot" data-cup-slot="hero" data-pour="0" data-cup-x="-0.22" role="img" aria-label="A sealed Sparkz cup with a 50ml flavor container beside it"></div>
+      </div>
+    </section>
+
+    <section id="pour" class="pour dark" aria-label="The pour">
+      <div class="pour-pin">
+        <div class="cup-slot pour-slot" data-cup-slot="pour" data-pour="scrub" data-cup-y=".3" role="img" aria-label="The flavor container pours into the cup and the color blooms into a gradient"></div>
+        <div class="pour-beats" id="pour-beats">
+          <p class="beat" data-at="0,.16">Sealed at the stall.</p>
+          <p class="beat" data-at=".2,.5">Poured by you.</p>
+          <p class="beat" data-at=".52,.82">Then it blooms.</p>
+          <p class="beat" data-at=".86,1.01">24 ways to make it yours.</p>
+        </div>
+        <a class="skip-pour" href="#about">Skip the pour</a>
+        <p class="caption pour-caption">3D pour: scroll to pour the flavor and watch it bloom through the drink.</p>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT US ============ -->
+    <section id="about" class="sec dark-2" aria-labelledby="about-h">
+      <div class="wrap">
+        <h2 id="about-h" class="h2">About Us</h2>
+        <div class="about-grid">
+          <div class="prose">
+            <h3>Team name</h3>
+            <p>Sparkz, a student business of Grade 12 ABM at La Salle College Antipolo.</p>
+            <h3>The idea</h3>
+            <p>Sparkz is a build-your-own mocktail. Every order is a chilled Sprite-based drink in a sealed cup, plus a 50ml flavor you pour in yourself. Four bases and six tops make 24 combinations. It's ₱80 for any of them.</p>
+            <h3>Our mission</h3>
+            <p>Sparkz is dedicated to giving the LSCA community back the break time that walking and lining up take from them, by delivering a fresh, customisable mocktail to where they already are.</p>
+            <h3>Our vision</h3>
+            <!-- TODO: "access that beats the canteen" can read as a dig at the school canteen. Kept as written in the study until the owner says to trim it. -->
+            <p>Sparkz aims to be LSCA's go-to drink brand for flavours that feel local and access that beats the canteen, and to build a repeatable model that future batches of students can adopt and improve.</p>
+          </div>
+          <div class="prose">
+            <h3>Why we chose this product</h3>
+            <p>We kept seeing the same thing at break. People wanted something cold, but the canteen was a long walk uphill, and the line ate whatever time was left. So they skipped it. We figured the drink should come to them.</p>
+            <figure class="hill" id="hill">
+              <svg viewBox="0 0 640 300" role="img" aria-labelledby="hill-t hill-d">
+                <title id="hill-t">The walk to the canteen versus a Sparkz runner</title>
+                <desc id="hill-d">A person walks uphill from the classroom to the canteen and joins a line while the break timer drains. A Sparkz runner then reaches the classroom and the timer barely moves.</desc>
+                <path id="hill-ground" d="M10 240 C120 240 150 210 220 190 S330 120 420 110 S560 120 630 118" fill="none" stroke="#EAF7FF" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+                <g transform="translate(18 196)"><rect width="46" height="44" rx="4" fill="#3A2A7A" stroke="#EAF7FF" stroke-opacity=".6"/><path d="M0 0l23-16 23 16" fill="#5B3FB0"/><text x="23" y="30" text-anchor="middle" font-size="11" fill="#EAF7FF">Class</text></g>
+                <g transform="translate(560 70)"><rect width="64" height="48" rx="4" fill="#3A2A7A" stroke="#EAF7FF" stroke-opacity=".6"/><path d="M-4 0l36-20 36 20" fill="#5B3FB0"/><text x="32" y="30" text-anchor="middle" font-size="11" fill="#EAF7FF">Canteen</text></g>
+                <g id="queue" opacity="0"><circle cx="520" cy="112" r="5" fill="#EAF7FF"/><circle cx="505" cy="113" r="5" fill="#EAF7FF"/><circle cx="490" cy="113" r="5" fill="#EAF7FF"/><circle cx="475" cy="114" r="5" fill="#EAF7FF"/></g>
+                <circle id="walker" r="8" fill="#FFC83D" cx="40" cy="236"/>
+                <circle id="runner" r="8" fill="#FF6B3D" cx="560" cy="108" opacity="0"/>
+                <g transform="translate(300 40)" id="timer"><circle r="26" fill="none" stroke="#EAF7FF" stroke-opacity=".25" stroke-width="7"/><circle id="timer-ring" r="26" fill="none" stroke="#FFC83D" stroke-width="7" stroke-linecap="round" transform="rotate(-90)" stroke-dasharray="163.4" stroke-dashoffset="0"/><text y="5" text-anchor="middle" font-size="13" fill="#EAF7FF" id="timer-label">Break</text></g>
+                <text id="bell" x="300" y="96" text-anchor="middle" font-size="13" fill="#FFC83D" opacity="0">The bell rings.</text>
+                <text id="soyes" x="320" y="276" text-anchor="middle" font-size="17" font-weight="600" fill="#EAF7FF" opacity="0">So the drink comes to you.</text>
+              </svg>
+              <figcaption class="caption">Animation: the walk uphill and the line use up the break. A Sparkz runner barely moves the timer.</figcaption>
+            </figure>
+            <h3>How it connects to SDG 12</h3>
+            <p>Sparkz makes drinks to confirmed pre-orders, pre-portions every flavor, uses sugarcane straws, and takes empty cups back. That's <a href="#sdg">Responsible Consumption and Production</a>. Our pitch also connects Sparkz to SDG 8 and SDG 9.</p>
+          </div>
+        </div>
+        <h3 class="h3 team-h">The team</h3>
+        <ul class="team" id="team">
+          <li><span class="av">DT</span><strong>Daniel Torio</strong><span>Owner and Chief Managing Officer</span></li>
+          <!-- TODO: roles. The study lists production, finance, stall operations, roaming sales, delivery and marketing. Map them once confirmed. -->
+          <li><span class="av">RA</span><strong>Robin Adeva</strong><span>Operations team</span></li>
+          <li><span class="av">GM</span><strong>Gavin Manalo</strong><span>Operations team</span></li>
+          <li><span class="av">JS</span><strong>James Santos</strong><span>Operations team</span></li>
+          <li><span class="av">RY</span><strong>Risee Yu</strong><span>Operations team</span></li>
+          <!-- TODO: confirm Sophia Caitlyn's surname and role. She is not on the study's cover page. -->
+          <li><span class="av">SC</span><strong>Sophia Caitlyn</strong><span>Operations team</span></li>
+        </ul>
+        <!-- TODO: confirm everyone is okay with their names and photos being public. -->
+      </div>
+    </section>
+
+    <!-- ============ OUR PRODUCT ============ -->
+    <section id="product" class="sec dark-3" aria-labelledby="product-h">
+      <div class="wrap">
+        <h2 id="product-h" class="h2">Our Product</h2>
+        <p class="lede wide">Sparkz: Build Your Own Drink. <span class="price-chip">₱<span data-price>80</span> any drink</span></p>
+
+        <div class="inbox">
+          <h3 class="h3">What comes in every order</h3>
+          <ul class="inbox-list">
+            <li><strong>A 500ml clear cup</strong><span>Chilled Sprite-based drink with your base flavor, sealed with a dome lid at the stall.</span></li>
+            <li><strong>A 50ml flavor</strong><span>The top flavor in its own container. You pour it in.</span></li>
+            <li><strong>A sugarcane straw</strong><span>Made from bagasse, not plastic.</span></li>
+          </ul>
+          <ol class="steps" aria-label="How it works">
+            <li><b>1</b><span>Pick a base and a top.</span></li>
+            <li><b>2</b><span>Pre-order, or grab one at the stall.</span></li>
+            <li><b>3</b><span>Pour it in.</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Builder -->
+      <div id="builder" class="builder-sec">
+        <div class="wrap builder">
+          <div class="builder-ui">
+            <h3 class="h2 small">Pick a base. Pick a top. Pour.</h3>
+            <form id="builder-form" onsubmit="return false">
+              <fieldset class="goo-group" id="base-group"><legend>Base</legend><div class="goo-row" role="radiogroup" aria-label="Base"></div></fieldset>
+              <fieldset class="goo-group" id="top-group"><legend>Top</legend><div class="goo-row" role="radiogroup" aria-label="Top"></div></fieldset>
+            </form>
+            <div class="combo" aria-live="polite" aria-atomic="true"><span class="combo-name" id="combo-name">Sunrise</span><span class="combo-detail" id="combo-detail">Sala and mango. ₱80</span></div>
+            <p class="tried" id="tried">You've tried 1 of 24.</p>
+            <div class="builder-actions">
+              <button type="button" class="btn btn-primary" id="b-order" data-magnet>Pre-order this drink</button>
+              <button type="button" class="btn btn-ghost" id="b-surprise">Surprise me</button>
+              <button type="button" class="btn btn-ghost" id="b-copy">Copy link to this drink</button>
+            </div>
+            <p class="status" id="b-status" role="status"></p>
+            <label class="copy-fallback" id="b-fallback" hidden>Copy this link<input type="text" readonly id="b-link"></label>
+            <p class="caption">Interactive 3D: the cup recolors and replays the pour with every pick.</p>
+          </div>
+          <div class="cup-slot builder-slot" data-cup-slot="builder" data-pour="1" data-cup-x="-0.08" role="img" aria-label="Your drink, shown as a 3D cup"></div>
+        </div>
+      </div>
+
+      <!-- Signature drinks (pinned and stepped on scroll) -->
+      <div id="signatures" class="sigs" aria-label="Signature drinks">
+        <div class="sig-pin">
+          <div class="cup-slot sig-slot" data-cup-slot="sig" data-pour="1" data-cup-x="-0.1" role="img" aria-label="The signature drink, shown as a 3D cup"></div>
+          <div class="sig-panels"></div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="yourway">
+          <h3 class="h3">Your Way</h3>
+          <p>Any base. Any top. Same ₱80. <a href="#builder" class="textlink">Build one</a></p>
+        </div>
+
+        <!-- Flavors -->
+        <div id="flavors" class="flavors">
+          <div class="flavors-head">
+            <h3 class="h3">The flavors</h3>
+            <div class="seg" role="group" aria-label="Filter flavors">
+              <button type="button" class="seg-btn is-on" data-f="all" aria-pressed="true">All 10</button>
+              <button type="button" class="seg-btn" data-f="local" aria-pressed="false">Feels local (7)</button>
+              <button type="button" class="seg-btn" data-f="familiar" aria-pressed="false">Familiar picks (3)</button>
+            </div>
+          </div>
+          <ul class="swatches" id="swatches"></ul>
+          <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+        </div>
+
+        <!-- Four ways -->
+        <div id="channels" class="channels">
+          <h3 class="h2 small">Four ways to get one.</h3>
+          <div class="ch-track" id="ch-track">
+            <article class="ch-panel">
+              <div class="ch-art"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="none" stroke="rgba(26,18,64,.15)" stroke-width="8"/><circle id="ring" cx="40" cy="40" r="30" fill="none" stroke="#FFC83D" stroke-width="8" stroke-linecap="round" transform="rotate(-90 40 40)" stroke-dasharray="188.5" stroke-dashoffset="47"/></svg></div>
+              <h4>Pre-order</h4>
+              <p>Opens the day before and closes one hour before break. Pay with GCash.</p>
+              <p class="ch-live" id="ch-count"></p>
+            </article>
+            <article class="ch-panel">
+              <div class="ch-art"><svg viewBox="0 0 80 80" aria-hidden="true"><rect x="12" y="34" width="56" height="30" rx="4" fill="#5B3FB0"/><path d="M8 34l32-20 32 20z" fill="#FFC83D"/><rect x="34" y="44" width="12" height="20" fill="#1A1240"/></svg></div>
+              <h4>Stall</h4>
+              <p>Br. Donato Hall. Cash or GCash.</p>
+            </article>
+            <article class="ch-panel">
+              <div class="ch-art"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="runner-dot" cx="20" cy="46" r="9" fill="#FF6B3D"/><path d="M8 62h64" stroke="rgba(26,18,64,.3)" stroke-width="3" stroke-dasharray="4 6"/></svg></div>
+              <h4>Roaming sellers</h4>
+              <p>We carry drinks to the buildings farthest from the stall.</p>
+              <!-- TODO: payment method for roaming sellers is not stated in the study. -->
+            </article>
+            <article class="ch-panel">
+              <div class="ch-art"><svg viewBox="0 0 80 80" aria-hidden="true"><path class="pin-drop" d="M40 14c-10 0-17 7-17 16 0 12 17 30 17 30s17-18 17-30c0-9-7-16-17-16z" fill="#F0465C"/><circle class="pin-drop" cx="40" cy="30" r="6" fill="#fff"/><ellipse cx="40" cy="66" rx="12" ry="3" fill="rgba(0,0,0,.25)"/></svg></div>
+              <h4>Delivery</h4>
+              <p>Pin your classroom, building, or common area on the order form and a runner brings it.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- Benefits, customers, useful / innovative / sustainable -->
+        <div class="trio">
+          <article><h3 class="h3">Who it's for</h3><p>SHS students first (ages 16 to 19), then JHS students, teachers, and staff. Anyone at LSCA who wants something cold without giving up their break.</p></article>
+          <article><h3 class="h3">What you get</h3><p>Time back, because the drink comes to you. Choice, because there are 24 combinations. And a cold drink that's yours to finish with a pour.</p></article>
+          <article><h3 class="h3">Useful, innovative, sustainable</h3><p><strong>Useful:</strong> four ways to get a drink, all built around a short break. <strong>Innovative:</strong> you do the pour, and the color blooms through the cup. <strong>Sustainable:</strong> see below and in <a href="#sdg">SDG 12</a>.</p></article>
+        </div>
+
+        <div class="footprint">
+          <figure class="straw-fig">
+            <svg viewBox="0 0 120 260" role="img" aria-label="A sugarcane bagasse straw">
+              <defs><filter id="fib"><feTurbulence type="fractalNoise" baseFrequency=".9 .04" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .3  0 0 0 0 .12  0 0 0 .55 0"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>
+              <g transform="rotate(12 60 130)"><rect x="46" y="12" width="28" height="236" rx="14" fill="#D6AD74"/><rect x="46" y="12" width="28" height="236" rx="14" filter="url(#fib)"/><rect x="52" y="16" width="6" height="228" rx="3" fill="#fff" opacity=".22"/></g>
+            </svg>
+            <figcaption class="caption">Illustration of a bagasse straw: matte, with sugarcane fiber.</figcaption>
+          </figure>
+          <div class="prose">
+            <h3 class="h3">Our small footprint</h3>
+            <p><strong>Sugarcane straws.</strong> Bagasse is the fibrous pulp left over from sugarcane, and it is naturally biodegradable <span data-cite="neu2020"></span>.</p>
+            <p><strong>Exact 50ml portions.</strong> No over-pouring, so less syrup goes to waste.</p>
+            <p><strong>Made to order.</strong> We prepare drinks for confirmed pre-orders, so fewer go unsold.</p>
+            <p><strong>Cups come back.</strong> <span data-cupline>We collect empty cups at the stall.</span></p>
+            <p><a class="btn btn-ghost" href="#sdg">How Sparkz supports SDG 12</a></p>
+          </div>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <h3 class="h3">The drinks</h3>
+          <ul class="gal">
+            <li><img src="./img/render-sunrise.webp" alt="Sunrise: a red-to-gold drink with the Sparkz sticker" loading="lazy" width="720" height="900"><span class="caption">Sunrise. Concept render, not a photo.</span></li>
+            <li><img src="./img/render-baguio.webp" alt="Trip to Baguio: a green-to-red drink" loading="lazy" width="720" height="900"><span class="caption">Trip to Baguio. Concept render, not a photo.</span></li>
+            <li><img src="./img/render-dawn.webp" alt="Dawn: a green-to-blue-to-purple drink" loading="lazy" width="720" height="900"><span class="caption">Dawn. Concept render, not a photo.</span></li>
+          </ul>
+          <!-- TODO: swap in real photos and the slow-motion pour video (public/video/pour.webm and pour.mp4). The figure below hides itself until the files exist. -->
+          <figure class="pour-video" id="pour-video" hidden>
+            <video muted loop playsinline preload="none" poster="./img/pour-sunrise.webp"><source src="./video/pour.webm" type="video/webm"><source src="./video/pour.mp4" type="video/mp4"></video>
+            <button type="button" class="btn btn-ghost vid-btn" id="vid-btn" aria-pressed="false">Play</button>
+            <figcaption class="caption">A real pour in slow motion, to show the 3D matches the drink you get.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SDG 12 ============ -->
+    <section id="sdg" class="sec paper" aria-labelledby="sdg-h">
+      <div class="wrap">
+        <h2 id="sdg-h" class="h2">SDG 12: Responsible Consumption and Production</h2>
+        <p class="lede wide">SDG 12 is about making and buying things in ways that waste less. <span data-cite="undesa"></span></p>
+
+        <div class="two">
+          <div class="prose">
+            <h3 class="h3">The issue</h3>
+            <p>Single-use plastic. In the Philippines it shows up in sachets, shopping bags, cups and straws. On our campus, the everyday version is a drink cup and a straw that get used for one break and then thrown away.</p>
+          </div>
+          <div class="prose">
+            <h3 class="h3">Why it matters</h3>
+            <p>The numbers below come from published sources. Each one links to its reference.</p>
+          </div>
+        </div>
+
+        <div class="infographic" id="infographic">
+          <article class="fact"><p class="fact-n"><span data-count="2.7" data-dec="1">2.7</span> million tons</p><p>of plastic waste a year in the Philippines, and an estimated 20% ends up in the ocean. <span data-cite="wb2021"></span></p></article>
+          <article class="fact"><p class="fact-n"><span data-count="36">36</span>%</p><p>A 2021 model estimated that the Philippines accounts for about 36% of the plastic rivers carry into the ocean worldwide. Seven of the ten highest-emitting rivers in that model are in the Philippines. It's a model estimate, and the authors note real uncertainty. <span data-cite="meijer2021"></span><span data-cite="ritchie2021" data-prefix="; "></span></p></article>
+          <article class="fact"><p class="fact-n"><span data-count="163">163</span> million</p><p>plastic sachets used every day, plus 48 million shopping bags and 45 million thin plastic bags. These are 2019 figures. <span data-cite="gaia2019"></span></p></article>
+          <!-- F4 checked against the World Bank landing page for the report, which states it. "Including PET" is not stated there, so it is left out. -->
+          <article class="fact"><p class="fact-n"><span data-count="28">28</span>%</p><p>of key plastic resins were recycled in the Philippines in 2019. <span data-cite="wb2021"></span></p></article>
+          <article class="fact"><p class="fact-n">20% to 80%</p><p>The Extended Producer Responsibility Act of 2022 requires large companies to recover a rising share of their plastic packaging: 20% by the end of 2023, up to 80% by the end of 2028. <span data-cite="ra11898"></span></p></article>
+          <!-- TODO: schedule confirmed in several news and policy summaries, not yet against the statute text itself. Check RA 11898 and its IRR before the final deploy. -->
+          <article class="fact"><p class="fact-n">Target 12.5</p><p>"Substantially reduce waste generation through prevention, reduction, recycling and reuse" by 2030. <span data-cite="undesa"></span></p></article>
+        </div>
+        <p class="caption">Infographic: each figure is shown with its source year and a link to the reference list.</p>
+
+        <div class="loop-sec" id="loop-sec">
+          <h3 class="h2 small">How Sparkz helps</h3>
+          <div class="loop-grid">
+            <figure class="loop" id="loop">
+              <svg viewBox="0 0 420 360" role="img" aria-labelledby="loop-t loop-d">
+                <title id="loop-t">The Sparkz cup loop</title>
+                <desc id="loop-d">A cup goes from the stall, to your drink, to the finished drink, back to the stall, and is collected.</desc>
+                <path id="loop-path" d="M210 40 C330 40 380 120 350 200 S250 320 210 320 S70 290 60 200 S90 40 210 40" fill="none" stroke="#2F7A3A" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 0"/>
+                <circle id="loop-cup" r="13" fill="#FFB11A" stroke="#1A1240" stroke-width="3"/>
+                <g font-size="14" font-weight="600" fill="#1A1240">
+                  <text x="210" y="24" text-anchor="middle">At the stall</text>
+                  <text x="378" y="206" text-anchor="start">Your drink</text>
+                  <text x="210" y="346" text-anchor="middle">Finished</text>
+                  <text x="42" y="206" text-anchor="end">Back to the stall</text>
+                </g>
+              </svg>
+              <figcaption class="caption">Animated diagram: a Sparkz cup goes round the loop as you scroll.</figcaption>
+            </figure>
+            <ul class="targets">
+              <li><strong>Made to confirmed pre-orders</strong><span>Fewer unsold drinks thrown out. Targets 12.3 and 12.5 (prevention).</span></li>
+              <li><strong>Exact 50ml flavor portions</strong><span>No over-pouring. Target 12.5 (reduction).</span></li>
+              <li><strong>Bagasse straws</strong><span>One less plastic item per drink. Target 12.5 (reduction).</span></li>
+              <li><strong>Empty cups collected at the stall</strong><span>Target 12.5 (recycling). <span data-cuptarget>We collect them at the stall.</span></span></li>
+              <li><strong>This site, the message, and the pledge</strong><span>Target 12.8 (awareness).</span></li>
+            </ul>
+          </div>
+          <div class="honest">
+            <p class="honest-big">Our cup is still plastic. We're not pretending it isn't. So we take it back.</p>
+            <p data-epr hidden>The law asks big companies to take back their plastic. We're a student stall. We're doing it anyway. <span data-cite="ra11898"></span></p>
+          </div>
+        </div>
+
+        <div class="game" id="game">
+          <h3 class="h2 small">Sort your Sparkz</h3>
+          <p>Drag each item to the right bin, or tap an item and then a bin. The bins match the labels on campus.</p>
+          <p class="status" id="game-status" role="status" aria-live="polite"></p>
+          <div class="game-board">
+            <ul class="game-items" id="game-items" aria-label="Items to sort"></ul>
+            <div class="game-bins" id="game-bins"></div>
+          </div>
+          <div class="game-end" id="game-end" hidden>
+            <p class="game-score" id="game-score"></p>
+            <p>Best move of all: bring your cup back to the stall. <span data-hashtag>#BringBackYourCup</span></p>
+            <a class="btn btn-primary" href="#message" data-pledge-link>Take the pledge</a>
+            <button type="button" class="btn btn-ghost" id="game-again">Play again</button>
+          </div>
+          <p class="caption">Interactive game: practise sorting a Sparkz order into the campus bins.</p>
+        </div>
+        <p class="srcnote">Sources for this section are in the <a href="#sources">reference list</a>.</p>
+      </div>
+    </section>
+
+    <!-- ============ OUR MESSAGE ============ -->
+    <section id="message" class="sec sunrise-sec" aria-labelledby="message-h">
+      <div class="wrap">
+        <h2 id="message-h" class="h2">Our Message</h2>
+        <div class="msg-grid">
+          <div class="msg">
+            <p class="msg-big">A Sparkz lasts one break.<br>The cup lasts a lot longer.</p>
+            <p class="msg-p" data-msg-line>Bring it back to the stall. We collect every empty cup.</p>
+            <p class="msg-p">One habit. Every break.</p>
+            <p class="msg-tag" data-hashtag>#BringBackYourCup</p>
+            <div class="cta">
+              <a class="btn btn-dark" href="#pledge" id="take-pledge" data-magnet>Take the pledge</a>
+              <a class="btn btn-dark-ghost" href="#order" data-magnet>Pre-order a Sparkz</a>
+              <button class="btn btn-dark-ghost" type="button" id="share-msg">Share the message</button>
+            </div>
+            <p class="status" id="share-status" role="status"></p>
+            <p class="pledge-count" id="pledge-count" hidden></p>
+          </div>
+          <div class="pledge" id="pledge">
+            <h3 class="h3">Your pledge poster</h3>
+            <label class="field">Your drink
+              <select id="pledge-drink"></select>
+            </label>
+            <button type="button" class="btn btn-dark" id="pledge-make">Make my poster</button>
+            <div class="pledge-out" id="pledge-out" hidden>
+              <canvas id="pledge-canvas" width="1080" height="1920" aria-label="Your pledge poster preview"></canvas>
+              <div class="pledge-actions">
+                <button type="button" class="btn btn-dark" id="pledge-share">Share</button>
+                <a class="btn btn-dark-ghost" id="pledge-dl" download="sparkz-pledge.png">Download</a>
+              </div>
+              <p class="caption" id="pledge-hint">On a phone, press and hold the image to save it.</p>
+            </div>
+            <p class="caption">Poster maker: it draws your drink and the pledge as a story-size image you can share.</p>
+          </div>
+        </div>
+        <figure class="static-poster">
+          <img src="./img/advocacy-poster.png" alt="Advocacy poster: Every cup comes back. #BringBackYourCup" loading="lazy" width="540" height="960" onerror="this.closest('figure').hidden=true">
+          <figcaption class="caption">Advocacy poster. <a href="./img/advocacy-poster.pdf" target="_blank" rel="noopener noreferrer" class="textlink">Printable PDF for the stall</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ OUR PITCH ============ -->
+    <section id="pitch" class="sec paper" aria-labelledby="pitch-h">
+      <div class="wrap">
+        <h2 id="pitch-h" class="h2">Our Pitch</h2>
+        <p class="lede wide">The pitch deck behind this site: the problem, the product, the four ways to get a drink, and how Sparkz supports SDG 12.</p>
+        <!-- TODO: owner confirms what counts as "Previous Performance Task Output" and supplies the file. Fill CONFIG.PITCH (Drive preview link or slide images). -->
+        <div class="pitch" id="pitch-embed"></div>
+      </div>
+    </section>
+
+    <!-- ============ ORDER ============ -->
+    <section id="order" class="sec sunrise-sec warm" aria-labelledby="order-h">
+      <div class="wrap">
+        <h2 id="order-h" class="h2">Order</h2>
+        <div class="order-grid">
+          <div>
+            <p class="lede wide">Pre-orders close one hour before break. <span class="cutoff" id="cutoff"></span></p>
+            <form id="order-form" class="form" novalidate>
+              <fieldset class="f-mode"><legend>I want to</legend>
+                <label class="radio"><input type="radio" name="mode" value="Order" checked><span>Place an order</span></label>
+                <label class="radio"><input type="radio" name="mode" value="Inquiry"><span>Ask a question</span></label>
+              </fieldset>
+              <label class="field">Name<input name="name" type="text" required autocomplete="name"><small class="err" data-err="name"></small></label>
+              <label class="field"><span data-contact-label>How to reach you (Instagram handle)</span><input name="contact" type="text" required><small class="err" data-err="contact"></small></label>
+              <div data-order-only>
+                <label class="field">Drink
+                  <select name="drink" id="o-drink"></select>
+                </label>
+                <label class="field">Quantity<input name="quantity" type="number" min="1" max="20" value="1" inputmode="numeric"></label>
+                <fieldset class="f-mode"><legend>Pickup or delivery</legend>
+                  <label class="radio"><input type="radio" name="channel" value="Pickup at the stall" checked><span>Pickup at the stall</span></label>
+                  <label class="radio"><input type="radio" name="channel" value="Delivery"><span>Delivery</span></label>
+                </fieldset>
+                <label class="field" data-delivery hidden>Delivery spot<span id="o-loc-wrap"></span><small class="err" data-err="location"></small></label>
+                <label class="field">Break slot<span id="o-slot-wrap"></span></label>
+                <label class="field">GCash reference number (our payment check)<input name="gcash" type="text" inputmode="numeric" autocomplete="off"></label>
+              </div>
+              <label class="field">Questions or comments<textarea name="notes" rows="3"></textarea></label>
+              <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <label class="check"><input type="checkbox" name="consent" required><span>We only use this to fill your order or answer your question. Under the Data Privacy Act of 2012 (RA 10173), you can ask us to delete it. <span data-cite="ra10173" data-label="Data Privacy Act of 2012"></span></span></label>
+              <small class="err" data-err="consent"></small>
+              <button class="btn btn-dark" type="submit" id="order-submit">Send order</button>
+              <p class="status" id="order-status" role="status" aria-live="polite"></p>
+              <div class="fallback" id="order-fallback" hidden>
+                <p>Your order summary (copy it and send it to us):</p>
+                <textarea readonly rows="5" id="order-summary"></textarea>
+                <a class="btn btn-dark-ghost" id="order-viewform" target="_blank" rel="noopener noreferrer" hidden>Open the form instead</a>
+              </div>
+            </form>
+          </div>
+          <aside class="order-side">
+            <figure class="qr"><img src="./qr/site.svg" alt="QR code for the Sparkz site" width="180" height="180" onerror="this.closest('figure').hidden=true"><figcaption class="caption">Scan to open Sparkz on your phone.</figcaption></figure>
+            <p class="side-note">Pay with GCash when you pre-order. At the stall, cash or GCash.</p>
+            <p class="side-note">Stall: <span data-stall>Br. Donato Hall, La Salle College Antipolo</span></p>
+            <ul class="socials" id="socials"></ul>
+          </aside>
+        </div>
+
+        <div class="faq" id="faq">
+          <h3 class="h2 small">Questions</h3>
+          <details><summary>What is Sparkz?</summary><p>A build-your-own mocktail: a chilled Sprite-based drink in a sealed 500ml cup, plus a 50ml flavor you pour in yourself.</p></details>
+          <details><summary>Is there alcohol in it?</summary><p>No. It's a mocktail.</p></details>
+          <details><summary>How much is it?</summary><p>₱80 for any drink, signatures included.</p></details>
+          <details><summary>How many combinations are there?</summary><p>4 bases times 6 tops, so 24.</p></details>
+          <details><summary>How do I order?</summary><p>Pre-order on the form, buy at the stall, catch a roaming seller, or pre-order with delivery.</p></details>
+          <details><summary>When do pre-orders close?</summary><p>One hour before break. They open the day before.</p></details>
+          <details><summary>How do I pay?</summary><p>Pre-orders: GCash when you order. Stall: cash or GCash.</p></details>
+          <details><summary>Can you bring it to my classroom?</summary><p>Yes. Pre-order, choose delivery, and pin your classroom, building, or common area on the form.</p></details>
+          <details><summary>Where is the stall?</summary><p>Br. Donato Hall, La Salle College Antipolo.</p></details>
+          <details><summary>What is the straw made of?</summary><p>Sugarcane bagasse, not plastic.</p></details>
+          <details><summary>What do I do with the empty cup?</summary><p>Bring it back to the stall. We collect empty cups.</p></details>
+          <!-- TODO: confirm allergens and ingredients with the group. No health, nutrition or "all-natural" claims. -->
+          <details><summary>Allergens and ingredients?</summary><p>We're confirming the full ingredient list. If you have an allergy, ask us at the stall before you order.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEEDBACK ============ -->
+    <section id="feedback" class="sec sunrise-sec warm-2" aria-labelledby="feedback-h">
+      <div class="wrap narrow">
+        <h2 id="feedback-h" class="h2">Feedback</h2>
+        <p class="lede wide">Tell us what you think. It shapes what we pour next.</p>
+        <form id="fb-form" class="form" novalidate>
+          <fieldset class="rate"><legend>Rate your Sparkz (or this site)</legend>
+            <div class="rate-row" id="rate-row"></div>
+            <small class="err" data-err="rating"></small>
+          </fieldset>
+          <fieldset class="f-mode"><legend>Which flavor should we add next?</legend>
+            <!-- ASSUMPTION: starter choices for the poll. TODO: owner edits. -->
+            <label class="radio"><input type="radio" name="nextFlavor" value="Calamansi"><span>Calamansi</span></label>
+            <label class="radio"><input type="radio" name="nextFlavor" value="Lychee"><span>Lychee</span></label>
+            <label class="radio"><input type="radio" name="nextFlavor" value="Watermelon"><span>Watermelon</span></label>
+            <label class="radio"><input type="radio" name="nextFlavor" value="Green apple"><span>Green apple</span></label>
+            <label class="radio"><input type="radio" name="nextFlavor" value="Other"><span>Other</span></label>
+          </fieldset>
+          <label class="field">Comment (optional)<textarea name="comment" rows="3"></textarea></label>
+          <label class="field">Name (optional)<input name="name" type="text" autocomplete="name"></label>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="check"><input type="checkbox" name="consent" required><span>We only use this to read your feedback. Under the Data Privacy Act of 2012 (RA 10173), you can ask us to delete it.</span></label>
+          <small class="err" data-err="consent"></small>
+          <button class="btn btn-dark" type="submit" id="fb-submit">Send feedback</button>
+          <p class="status" id="fb-status" role="status" aria-live="polite"></p>
+          <div class="fallback" id="fb-fallback" hidden><a class="btn btn-dark-ghost" id="fb-viewform" target="_blank" rel="noopener noreferrer">Open the feedback form instead</a></div>
+          <div class="thanks" id="fb-thanks" hidden aria-hidden="true"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section id="sources" class="sec paper" aria-labelledby="sources-h">
+      <div class="wrap">
+        <h2 id="sources-h" class="h2">Sources</h2>
+        <p class="lede wide">References (APA 7)</p>
+        <ul class="refs" id="reflist"></ul>
+        <h3 class="h3">Credits</h3>
+        <ul class="credits">
+          <li>The drink renders on this site are concept art made with AI image tools, for design reference. They are labeled where shown and are not photographs of the product. Real photos and video are coming from the Sparkz team. <!-- TODO: name the shooter when real photos arrive --></li>
+          <li>Built with three.js (MIT), GSAP (GSAP Standard License), Lenis (MIT), qrcode (MIT). Fonts: Fredoka and Figtree (SIL Open Font License).</li>
+          <li>Sparkz is a sole proprietorship owned by Daniel F. Torio.</li>
+        </ul>
+        <!-- SDG 12 is shown as a text badge. The official UN icon is not used. -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot dark">
+    <div class="wrap foot-grid">
+      <div>
+        <svg class="foot-mark" viewBox="0 0 140 140" aria-hidden="true"><use href="#sparkz-mark"/></svg>
+        <p class="foot-tag">Accessible Drinks, Innovative Twists.</p>
+        <p><span data-hashtag>#BringBackYourCup</span></p>
+        <p class="foot-small">A student business of Grade 12 ABM, La Salle College Antipolo.</p>
+      </div>
+      <nav aria-label="Site map" class="sitemap">
+        <a href="#home">Home</a><a href="#about">About Us</a><a href="#product">Our Product</a><a href="#sdg">SDG 12</a><a href="#message">Our Message</a><a href="#pitch">Our Pitch</a><a href="#order">Order</a><a href="#feedback">Feedback</a><a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+  <noscript><style>#preloader{display:none}</style></noscript>
+</body>
+</html>

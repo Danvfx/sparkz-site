@@ -1,0 +1,28 @@
+:root {
+  /* Dawn to sunrise. The logo's colors win where they differ from the proposal. */
+  --night: #1a1240;
+  --dusk: #3a2a7a;
+  --ice: #eaf7ff;
+  --sun: #ffc83d;
+  --sunrise: #ff6b3d;
+  --fizz: #ffffff;
+  --leaf: #17692a;        /* brand green, dark enough for text on paper */
+  --leaf-bright: #3daa20; /* logo green */
+  --paper: #fff6e6;
+  --paper-2: #ffecd0;
+  --ink: #1a1240;
+  --muted: #b9b4de;       /* on dark: 7:1 on --night */
+  --muted-ink: #4a4470;   /* on paper */
+  --drop-blue: #0a86d2; --drop-purple: #8a35cf; --drop-red: #ff2020; --drop-pink: #ff2a8c; --drop-lime: #8fc20a;
+
+  --cup-base: #c81d3e; --cup-top: #ffc233; --cup-bottom: #c81d3e; --cup-upper: #ffc233;
+
+  --font-display: 'Fredoka Variable', 'Fredoka', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* type scale, ratio 1.25 */
+  --t-0: 1.0625rem; --t-1: 1.33rem; --t-2: 1.66rem; --t-3: 2.08rem; --t-4: 2.6rem; --t-5: 3.25rem; --t-6: 4.06rem;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 22px;
+  --nav-h: 64px;
+}
