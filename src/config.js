@@ -12,9 +12,9 @@ export const CONFIG = {
 
   // Order and inquiry form. Each ENTRY value is the Google Form "entry.<id>" name, for example 'entry.123456'.
   ORDER_FORM: {
-    ACTION: '',                 // TODO: https://docs.google.com/forms/d/e/<id>/formResponse
-    VIEW_URL: '',               // TODO: the "viewform" URL, used as the fallback link
-    ENTRY: { mode: '', name: '', contact: '', drink: '', quantity: '', channel: '', location: '', slot: '', gcash: '', notes: '' },
+    ACTION: 'https://docs.google.com/forms/d/e/1FAIpQLSeZm9PmXcANbbFLnn1ybq-81f_0GxsS6KmPkK8gh-emIrYP4Q/formResponse',                 // TODO: https://docs.google.com/forms/d/e/<id>/formResponse
+    VIEW_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeZm9PmXcANbbFLnn1ybq-81f_0GxsS6KmPkK8gh-emIrYP4Q/viewform',               // TODO: the "viewform" URL, used as the fallback link
+    ENTRY: { mode: 'entry.277364625', name: 'entry.1609050473', contact: 'entry.642466418', drink: 'entry.483777309', quantity: 'entry.623283772', channel: 'entry.1635720725', location: 'entry.15386680', slot: 'entry.1689408011', gcash: 'entry.1271190954', notes: 'entry.1901709774' },
     CONTACT_KIND: 'instagram',  // ASSUMPTION: 'instagram' or 'email'. TODO: owner decides
   },
   FEEDBACK_FORM: {
