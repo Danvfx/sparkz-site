@@ -63,5 +63,5 @@ An FPS guard drops A to B (below about 45 fps) and B to throttled rendering (bel
 
 ## Notes
 
-- The drink renders in `public/img/render-*.webp` are AI concept art, labeled as such on the page. Replace them with real photos.
+- The gallery drinks are vector mockups drawn in code (`src/utils/mockup.js`) from `src/data/menu.js`, labeled as mockups on the page. Replace them with real photos when you have them. The old AI renders in `public/img/render-*.webp` are no longer used.
 - Nothing financial, and nothing from the Turon-Da-Go section of the study, belongs on this site. See the brief's "Keep off the site" lists.

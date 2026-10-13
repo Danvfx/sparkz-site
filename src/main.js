@@ -10,6 +10,7 @@ import { app, setDrink, goTo } from './app.js';
 import { CONFIG } from './config.js';
 import { embed, present, debug, params, detectTier, coarse } from './utils/env.js';
 import { mountSvgCups } from './utils/svgCup.js';
+import { mountMockups } from './utils/mockup.js';
 import { initNav } from './sections/nav.js';
 import { heroIntro, initPour, initHill } from './sections/story.js';
 import { initBuilder, initFlavors, initChannels, initChannelsPin, initVideo } from './sections/product.js';
@@ -42,7 +43,7 @@ const reveal = () => {
 setTimeout(reveal, app.tier === 'C' ? 700 : 2500);
 
 // static content
-initCupCopy(); initCites(); mountSvgCups();
+initCupCopy(); initCites(); mountSvgCups(); mountMockups();
 const builder = initBuilder();
 initFlavors(); initChannels(); initVideo();
 initPitch(); initOrder(); initAsk(); initFeedback();

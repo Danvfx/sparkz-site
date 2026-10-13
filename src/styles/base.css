@@ -240,6 +240,8 @@ html.hpin .ch-panel { width: min(520px, 70vw); min-height: 300px; }
 .gal { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .gal li { display: grid; gap: 6px; }
 .gal img { border-radius: var(--radius); width: 100%; height: auto; }
+.mock-frame { border-radius: var(--radius); aspect-ratio: 4 / 5; display: grid; place-items: center; padding: 18px; background: linear-gradient(160deg, color-mix(in srgb, var(--m1) 22%, #fff), color-mix(in srgb, var(--m2) 22%, #fff)); }
+.mockup { height: 100%; width: auto; max-width: 100%; }
 .pour-video { margin: 32px 0 0; max-width: 560px; position: relative; }
 .pour-video video { width: 100%; border-radius: var(--radius); }
 .vid-btn { margin-top: 10px; min-height: 44px; }
