@@ -16,7 +16,7 @@ import { initBuilder, initFlavors, initChannels, initChannelsPin, initVideo } fr
 import { initSignatures } from './sections/signatures.js';
 import { initCites, initCupCopy, initInfographic, initLoop, initGame } from './sections/sdg.js';
 import { initMessage, initPitch } from './sections/message.js';
-import { initOrder, initFeedback } from './sections/forms.js';
+import { initOrder, initAsk, initFeedback } from './sections/forms.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 gsap.ticker.lagSmoothing(0);
@@ -45,7 +45,7 @@ setTimeout(reveal, app.tier === 'C' ? 700 : 2500);
 initCupCopy(); initCites(); mountSvgCups();
 const builder = initBuilder();
 initFlavors(); initChannels(); initVideo();
-initPitch(); initOrder(); initFeedback();
+initPitch(); initOrder(); initAsk(); initFeedback();
 initNav();
 initGame();
 setProgress(0.25);

@@ -307,6 +307,10 @@ html.hpin .ch-panel { width: min(520px, 70vw); min-height: 300px; }
 /* forms */
 .order-grid { display: grid; gap: 40px; margin-top: 16px; align-items: start; }
 @media (min-width: 900px) { .order-grid { grid-template-columns: 1.3fr .7fr; gap: 56px; } }
+.widgets { display: grid; gap: 28px; margin-top: 20px; }
+@media (min-width: 1200px) { .widgets { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+.widget { margin-top: 0; padding: 24px; border: 2px solid var(--ink); border-radius: var(--radius); background: rgba(255, 255, 255, .45); box-shadow: 5px 5px 0 var(--sun); }
+.widget > .h3 { margin: 0; }
 .cutoff { display: block; font-family: var(--font-display); font-weight: 700; font-size: var(--t-2); margin-top: .2em; }
 .form { display: grid; gap: 16px; margin-top: 20px; }
 .field { display: grid; gap: 6px; font-weight: 600; }

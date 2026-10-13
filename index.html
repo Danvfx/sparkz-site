@@ -430,29 +430,26 @@
         <div class="order-grid">
           <div>
             <p class="lede wide">Pre-orders close one hour before break. <span class="cutoff" id="cutoff"></span></p>
-            <form id="order-form" class="form" novalidate>
-              <fieldset class="f-mode"><legend>I want to</legend>
-                <label class="radio"><input type="radio" name="mode" value="Order" checked><span>Place an order</span></label>
-                <label class="radio"><input type="radio" name="mode" value="Inquiry"><span>Ask a question</span></label>
-              </fieldset>
+            <div class="widgets">
+            <form id="order-form" class="form widget" novalidate aria-labelledby="order-widget-h">
+              <h3 class="h3" id="order-widget-h">Place an order</h3>
+              <input type="hidden" name="mode" value="Order">
               <label class="field">Name<input name="name" type="text" required autocomplete="name"><small class="err" data-err="name"></small></label>
               <label class="field"><span data-contact-label>How to reach you (Instagram handle)</span><input name="contact" type="text" required><small class="err" data-err="contact"></small></label>
-              <div data-order-only>
-                <label class="field">Drink
-                  <select name="drink" id="o-drink"></select>
-                </label>
-                <label class="field">Quantity<input name="quantity" type="number" min="1" max="20" value="1" inputmode="numeric"></label>
-                <fieldset class="f-mode"><legend>Pickup or delivery</legend>
-                  <label class="radio"><input type="radio" name="channel" value="Pickup at the stall" checked><span>Pickup at the stall</span></label>
-                  <label class="radio"><input type="radio" name="channel" value="Delivery"><span>Delivery</span></label>
-                </fieldset>
-                <label class="field" data-delivery hidden>Delivery spot<span id="o-loc-wrap"></span><small class="err" data-err="location"></small></label>
-                <label class="field">Break slot<span id="o-slot-wrap"></span></label>
-                <label class="field">GCash reference number (our payment check)<input name="gcash" type="text" inputmode="numeric" autocomplete="off"></label>
-              </div>
-              <label class="field">Questions or comments<textarea name="notes" rows="3"></textarea></label>
+              <label class="field">Drink
+                <select name="drink" id="o-drink"></select>
+              </label>
+              <label class="field">Quantity<input name="quantity" type="number" min="1" max="20" value="1" inputmode="numeric"></label>
+              <fieldset class="f-mode"><legend>Pickup or delivery</legend>
+                <label class="radio"><input type="radio" name="channel" value="Pickup at the stall" checked><span>Pickup at the stall</span></label>
+                <label class="radio"><input type="radio" name="channel" value="Delivery"><span>Delivery</span></label>
+              </fieldset>
+              <label class="field" data-delivery hidden>Delivery spot<span id="o-loc-wrap"></span><small class="err" data-err="location"></small></label>
+              <label class="field">Break slot<span id="o-slot-wrap"></span></label>
+              <label class="field">GCash reference number (our payment check)<input name="gcash" type="text" inputmode="numeric" autocomplete="off"></label>
+              <label class="field">Notes for your order (optional)<textarea name="notes" rows="2"></textarea></label>
               <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <label class="check"><input type="checkbox" name="consent" required><span>We only use this to fill your order or answer your question. Under the Data Privacy Act of 2012 (RA 10173), you can ask us to delete it. <span data-cite="ra10173" data-label="Data Privacy Act of 2012"></span></span></label>
+              <label class="check"><input type="checkbox" name="consent" required><span>We only use this to fill your order. Under the Data Privacy Act of 2012 (RA 10173), you can ask us to delete it. <span data-cite="ra10173" data-label="Data Privacy Act of 2012"></span></span></label>
               <small class="err" data-err="consent"></small>
               <button class="btn btn-dark" type="submit" id="order-submit">Send order</button>
               <p class="status" id="order-status" role="status" aria-live="polite"></p>
@@ -462,6 +459,25 @@
                 <a class="btn btn-dark-ghost" id="order-viewform" target="_blank" rel="noopener noreferrer" hidden>Open the form instead</a>
               </div>
             </form>
+
+            <form id="ask-form" class="form widget" novalidate aria-labelledby="ask-widget-h">
+              <h3 class="h3" id="ask-widget-h">Ask a question</h3>
+              <input type="hidden" name="mode" value="Inquiry">
+              <label class="field">Name<input name="name" type="text" required autocomplete="name"><small class="err" data-err="name"></small></label>
+              <label class="field"><span data-contact-label>How to reach you (Instagram handle)</span><input name="contact" type="text" required><small class="err" data-err="contact"></small></label>
+              <label class="field">Your question<textarea name="notes" rows="4" required></textarea><small class="err" data-err="notes"></small></label>
+              <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <label class="check"><input type="checkbox" name="consent" required><span>We only use this to answer your question. Under the Data Privacy Act of 2012 (RA 10173), you can ask us to delete it. <span data-cite="ra10173" data-label="Data Privacy Act of 2012"></span></span></label>
+              <small class="err" data-err="consent"></small>
+              <button class="btn btn-dark" type="submit" id="ask-submit">Send question</button>
+              <p class="status" id="ask-status" role="status" aria-live="polite"></p>
+              <div class="fallback" id="ask-fallback" hidden>
+                <p>Your question (copy it and send it to us):</p>
+                <textarea readonly rows="4" id="ask-summary"></textarea>
+                <a class="btn btn-dark-ghost" id="ask-viewform" target="_blank" rel="noopener noreferrer" hidden>Open the form instead</a>
+              </div>
+            </form>
+            </div>
           </div>
           <aside class="order-side">
             <figure class="qr"><img src="./qr/site.svg" alt="QR code for the Sparkz site" width="180" height="180" onerror="this.closest('figure').hidden=true"><figcaption class="caption">Scan to open Sparkz on your phone.</figcaption></figure>
